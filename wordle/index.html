@@ -6,11 +6,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<header id="topbar">
   <h1>Wordle</h1>
-  <p id="message"></p>
+</header>
+<p id="message"></p>
+<section id="game-wrap">
+  <section id="left-side">
+    <main id="grid"></main>
+    <section id="keyboard"></section>
+  </section>
   <button id="opnieuw" onclick="location.reload()">Opnieuw</button>
-  <main id="grid"></main>
-  <section id="keyboard"></section>
+</section>
   <script src="script.js"></script>
 </body>
 </html>

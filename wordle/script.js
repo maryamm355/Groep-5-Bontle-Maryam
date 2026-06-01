@@ -3,7 +3,7 @@ const WORDS = [
   "STOEL", "TAFEL", "KLEUR", "ZWART", "GROEN",
   "BLAUW", "VLIEG", "APPEL", "WORST", "FIETS",
   "FIETS", "BOEK",  "DROOM", "VRIEND","VOGEL",
-  "MUZIEK","SPORT", "LICHT", "NACHT", "STORM",
+  "KAMEL","SPORT", "LICHT", "NACHT", "STORM",
   "BLOEM", "REGEN", "SNEEUW","ZOMER", "HERFST"
 ];
 
