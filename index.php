@@ -14,7 +14,7 @@
 
         <article class="welcome-message">
             <section class="button-play-now">
-                <a href="home.php"><button class="play-now">SPEEL NU</button></a>
+                <a href="games.php"><button class="play-now">SPEEL NU</button></a>
             </section>
         </article>
 

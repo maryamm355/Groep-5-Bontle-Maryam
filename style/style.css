@@ -64,3 +64,135 @@ body {
   color: white;
 }
 
+.button-login {
+  
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end; 
+  align-items: center;   
+  padding: 0 20px;          
+  height: 60px;              
+}
+
+.login-button {
+  background-color: #ec4899;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50px;
+  
+}
+
+
+
+.reserveer-BG
+{
+ margin: 0;
+    padding: 0;
+    background-color: #6d28d9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+.reserveer-BG a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 18px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+}
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+} 
+
+.buttonlogin {
+  display: flex;
+  justify-content: center;
+}
+.buttonlogin button {
+  background-color: #ec4899;
+  color: white;
+  border: none;
+  padding: 15px 150px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.register-link{
+  text-align: center;
+  margin-top: 20px;
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-welcome-message {
+  text-align: center;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: x-large;
+}
+
+.divider {
+  width: 1px;
+  height: 500px;
+  background-color: #f2f2f2;
+  margin: 0 30px;
+  
+}
+
+.gamecards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 30px;
+}
+
+.game-card {
+  width: 220px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+
+
+.games1 img {
+  width: 220px;
+  display: block;
+  object-fit: cover;
+  height: 200px;
+}
+
+.game-info {
+  margin: 0;
+  padding: 16px;
+  font-size: 1.1rem;
+  text-align: center;
+  color: white;
+}
+
+
+
+
+
