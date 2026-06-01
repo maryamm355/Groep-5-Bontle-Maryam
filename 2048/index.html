@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2048 Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="mobilewrap">
+        <main id="container">
+            <header class="score">
+                <p>
+                    <span class="title">Score</span>
+                    <span class="scorefield">0</span>
+                </p>
+            </header>
+            <section class="newgame">
+                <button class="button" type="button">New Game</button>
+            </section>
+            <section class="grid" aria-label="2048 game grid">
+                <div class="row">
+                    <div class="base"></div>
+                    <div class="base"></div>
+                    <div class="base"></div>
+                    <div class="base"></div>
+                </div>
+                <div class="row">
+                    <div class="base"></div>
+                    <div class="base"></div>
+                    <div class="base"></div>
+                    <div class="base"></div>
+                </div>
+                <div class="row">
+                    <div class="base"></div>
+                    <div class="base"></div>
+                    <div class="base"></div>
+                    <div class="base"></div>
+                </div>
+                <div class="row">
+                    <div class="base"></div>
+                    <div class="base"></div>
+                    <div class="base"></div>
+                    <div class="base"></div>
+                </div>
+            </section>
+            <div class="tiles" aria-hidden="true"></div>
+            <section class="over" hidden>
+                <p>Game Over</p>
+            </section>
+            <section class="won" hidden>
+                <p class="winner">You win!</p>
+                <p class="bestscore">BEST SCORE: <span class="numbest"></span></p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
