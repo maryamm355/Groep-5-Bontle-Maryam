@@ -38,69 +38,69 @@
          <section class="gamecards">
 
             <article class="games1">
-                <a href=""><img src="images/prison.jpg" alt="Prison game"></a>
+                <img src="images/prison.jpg" alt="Prison game">
             </article>
             <article class="games1">
-                <a href=""><img src="images/prison2.png" alt="Prison game"></a>
+                <img src="images/prison2.png" alt="Prison game">
             </article>
             <article class="games1">
-                <a href=""><img src="images/vex3.jpeg" alt="Vex 3 game"></a>
+                <img src="images/vex3.jpeg" alt="Vex 3 game">
             </article>
             <article class="games1">
-                <a href="2048/index.html"><img src="images/raftwars.png" alt="Raft Wars game"></a>
+               <img src="images/raftwars.png" alt="Raft Wars game">
             </article>
             <article class="games1">
-                <a href="2048/index.html"><img src="images/scooter.jpeg" alt="2048 game"></a>
+               <img src="images/scooter.jpeg" alt="2048 game">
             </article>
             <article class="games1">
-                <a href=""><img src="images/pizzeria.jpeg" alt="2048 game"></a>
-            </article>
-
-        </section>
-
-        <section class="gamecards">
-            
-
-            <article class="games1">
-                <a href="2048/index.html"><img src="images/tank.jpg" alt="2048 game"></a>
-            </article>
-            <article class="games1">
-                <a href="wordle/index.html"><img src="images/buddy.jpeg" alt="Wordle game"></a>
-            </article>
-            <article class="games1">
-                <a href="snake/index.html"><img src="images/icecream.png" alt="Classic Snake game"></a>
-            </article>
-            <article class="games1">
-                <a href="2048/index.html"><img src="images/fire4.jpg" alt="2048 game"></a>
-            </article>
-            <article class="games1">
-                <a href="2048/index.html"><img src="images/fire2.jpg" alt="2048 game"></a>
-            </article>
-            <article class="games1">
-                <a href="2048/index.html"><img src="images/bob2.jpeg" alt="2048 game"></a>
+               <img src="images/pizzeria.jpeg" alt="2048 game">
             </article>
 
         </section>
 
         <section class="gamecards">
             
+
             <article class="games1">
-                <a href="2048/index.html"><img src="images/AdamAndEve.jpg" alt="2048 game"></a>
+               <img src="images/tank.jpg" alt="2048 game">
             </article>
             <article class="games1">
-                <a href="wordle/index.html"><img src="images/bob.jpg" alt="Wordle game"></a>
+                <img src="images/buddy.jpeg" alt="Wordle game">
             </article>
             <article class="games1">
-                <a href="snake/index.html"><img src="images/fire1.jpeg" alt="Classic Snake game"></a>
+                <img src="images/icecream.png" alt="Classic Snake game">
             </article>
             <article class="games1">
-                <a href="2048/index.html"><img src="images/paperio.jpeg" alt="2048 game"></a>
+               <img src="images/fire4.jpg" alt="2048 game">
             </article>
             <article class="games1">
-                <a href="2048/index.html"><img src="images/wingeria.avif" alt="2048 game"></a>
+                <img src="images/fire2.jpg" alt="2048 game">
             </article>
             <article class="games1">
-                <a href="2048/index.html"><img src="images/vex2.jpeg" alt="2048 game"></a>
+                <img src="images/bob2.jpeg" alt="2048 game">
+            </article>
+
+        </section>
+
+        <section class="gamecards">
+            
+            <article class="games1">
+               <img src="images/AdamAndEve.jpg" alt="2048 game">
+            </article>
+            <article class="games1">
+                <img src="images/bob.jpg" alt="Wordle game">
+            </article>
+            <article class="games1">
+                <img src="images/fire1.jpeg" alt="Classic Snake game">
+            </article>
+            <article class="games1">
+                <img src="images/paperio.jpeg" alt="2048 game">
+            </article>
+            <article class="games1">
+               <img src="images/wingeria.avif" alt="2048 game">
+            </article>
+            <article class="games1">
+                <img src="images/vex2.jpeg" alt="2048 game">
             </article>
             
         </section>
