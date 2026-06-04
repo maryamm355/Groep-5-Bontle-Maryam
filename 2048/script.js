@@ -1,232 +1,202 @@
-
-var myElement = document.getElementById('mobilewrap');
-var hammertime = new Hammer(myElement);
+// --- setup ---
+const myElement = document.getElementById('mobilewrap');
+const hammertime = new Hammer(myElement);
 hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 
-hammertime.on('swipeleft', function(ev) {
-  moveDirection(37);
-});
+hammertime.on('swipeleft',  () => moveDirection(37));
+hammertime.on('swiperight', () => moveDirection(39));
+hammertime.on('swipeup',    () => moveDirection(38));
+hammertime.on('swipedown',  () => moveDirection(40));
 
-hammertime.on('swiperight', function(ev) {
-  moveDirection(39);
-});
+window.addEventListener('keydown', (e) => moveDirection(e.keyCode));
 
-hammertime.on('swipeup', function(ev) {
-  moveDirection(38);
-});
-
-hammertime.on('swipedown', function(ev) {
-  moveDirection(40);
-});
-
-/* ---------------------------------------------------------------------- */
-
-var matrix = [[0,0,0,0],
-              [0,0,0,0],
-              [0,0,0,0],
-              [0,0,0,0]];
-var component = new Array();
-var best = 0;
-var score = 0;
-
-$(".button").on("click", function(){
+document.querySelector('.button').addEventListener('click', () => {
   restoreField();
   init();
 });
 
+// --- staat ---
+let matrix, component, score, best;
+best = 0;
+
+// --- starten ---
+restoreField();
 init();
 
-function restoreField(){
+// --- functies ---
+function restoreField() {
   score = 0;
-  $(".scorefield").text(score);
-  matrix = [[0,0,0,0],
-            [0,0,0,0],
-            [0,0,0,0],
-            [0,0,0,0]];
-  component = new Array();
-  $('.tiles').remove();
-  $("#container").append("<div class='tiles'></div>");
-  $(".over").css("visibility", "hidden").css("opacity", "0");
+  document.querySelector('.scorefield').textContent = score;
+
+  matrix = [
+    [0,0,0,0],
+    [0,0,0,0],
+    [0,0,0,0],
+    [0,0,0,0]
+  ];
+  component = [];
+
+  const container  = document.getElementById('container');
+  const oldTiles   = container.querySelector('.tiles');
+  if (oldTiles) oldTiles.remove();
+
+  const newTiles = document.createElement('section');
+  newTiles.className = 'tiles';
+  container.appendChild(newTiles);
+
+  document.querySelector('.over').removeAttribute('hidden');
+  document.querySelector('.over').style.visibility = 'hidden';
+  document.querySelector('.over').style.opacity    = '0';
 }
 
 function random(min, max) {
-  return Math.floor((Math.random() * max) + min);
+  return Math.floor(Math.random() * max + min);
 }
 
-function dueoquattro(){
-  return (((Math.random() * 10) > 5) ? 4 : 2);
+function twoOrFour() {
+  return Math.random() * 10 > 5 ? 4 : 2;
 }
 
-function init(){
-  var i = 0;
-  while(i < 2){
-    var x = random(0, 4);
-    var y = random(0, 4);
-    
-    if(matrix[x][y] == 0){
+function init() {
+  let i = 0;
+  while (i < 2) {
+    const x = random(0, 4);
+    const y = random(0, 4);
+    if (matrix[x][y] === 0) {
+      matrix[x][y] = twoOrFour();
+      component.push({ x, y });
+      updateTile(x, y);
       i++;
-      matrix[x][y] = dueoquattro();
-      component.push({x: x, y: y});
-      
-      updateTile(12 * x, 12 * y, x, y);
     }
   }
 }
 
-function updateTile(trax, tray, x, y){
-    $(".tiles").append("<div class='tile tile-" + matrix[x][y] + " tile-" + x + "-" + y + "' style='transform: translate(" + trax + "vh, " + tray + "vh);'><div class='tile_content'><span>" + matrix[x][y] + "</span></div></div>");
+function updateTile(x, y) {
+  const tiles = document.querySelector('.tiles');
+
+  const old = tiles.querySelector(`.tile-${x}-${y}`);
+  if (old) old.remove();
+
+  const tile = document.createElement('article');
+  tile.className = `tile tile-${matrix[x][y]} tile-${x}-${y}`;
+  tile.style.transform = `translate(${12 * x}vh, ${12 * y}vh)`;
+
+  const content = document.createElement('span');
+  content.className = 'tile_content';
+
+  const num = document.createElement('span');
+  num.textContent = matrix[x][y];
+
+  content.appendChild(num);
+  tile.appendChild(content);
+  tiles.appendChild(tile);
 }
 
-window.addEventListener('keydown',this.direction,false);
+function moveDirection(code) {
+  let change = 0;
 
-function compare(a,b) {
-  if(dx == 1){
-    if (a.x < b.x)
-      return -1;
-    if (a.x > b.x)
-      return 1;
-    return 0;
+  if (code === 37) {
+    component.sort((a, b) => a.x - b.x);
+    change = move(-1, 0);
+  } else if (code === 39) {
+    component.sort((a, b) => b.x - a.x);
+    change = move(1, 0);
+  } else if (code === 38) {
+    component.sort((a, b) => a.y - b.y);
+    change = move(0, -1);
+  } else if (code === 40) {
+    component.sort((a, b) => b.y - a.y);
+    change = move(0, 1);
   }
+
+  if (change > 0) addTile();
+  if (checkDefeat()) showGameOver();
 }
 
-function moveDirection(code){
-  var change = 0;
-  switch(code){
-    case 37: 
-      component.sort(function(a, b){if(a.x < b.x){return -1;}if(a.x > b.x){return 1;}return 0;}); 
-      change = move(-1,0);
-      break;
-    case 38:
-      component.sort(function(a, b){if(a.y < b.y){return -1;}if(a.y > b.y){return 1;}return 0;}); 
-      change = move(0,-1);
-      break;
-    case 39:
-      component.sort(function(a, b){if(a.x > b.x){return -1;}if(a.x < b.x){return 1;}return 0;}); 
-      change = move(1,0);
-      break;
-    case 40:
-      component.sort(function(a, b){if(a.y > b.y){return -1;}if(a.y < b.y){return 1;}return 0;}); 
-      change = move(0, 1);
-      break;
-  }
-
-    if(change > 0){
-      addTile();
-    }
-  
-    if(checkDefeat()){
-      $(".over").css("visibility", "visible").css("opacity", "1");
-    }
-
-}
-
-function checkDefeat(){
-  if(component.length == 16){
-    for(var i = 0; i < component.length; i++){
-      for(var x = -1; x <= 1; x++){
-        for(var y = -1; y <= 1; y++){
-          if(x != y && Math.abs(x) != Math.abs(y)){
-            if(isMovePossible(component[i].x, component[i].y, x, y, i)){
-              return false;
-            }
-          }
-        }
+function move(dx, dy) {
+  let change = 0;
+  for (let i = 0; i < component.length; i++) {
+    while (isMovePossible(component[i].x, component[i].y, dx, dy)) {
+      makeMove(component[i].x, component[i].y, dx, dy, i);
+      change++;
+      if (component[i].x !== -1 && component[i].y !== -1) {
+        component[i].x += dx;
+        component[i].y += dy;
       }
     }
-
-    return true;
   }
-}
-
-function won(){
-  $(".won").css("visibility", "visible").css("padding-top", "0px").css("opacity", 1);
-}
-
-function direction(e) {
-  moveDirection(e.keyCode);
-}
-
-function addTile(){
-  var i = 0;
-  while(i < 1){
-    var x = random(0, 4);
-    var y = random(0, 4);
-    
-    if(matrix[x][y] == 0){
-      i++;
-      matrix[x][y] = dueoquattro();
-      component.push({x: x, y: y});
-      
-      updateTile(12 * x, 12 * y, x, y);
-    }
-  }
-}
-
-function move(dx, dy){
-  var change = 0;  
-  for(var i = 0; i < component.length; i++){
-      while(isMovePossible(component[i].x, component[i].y, dx, dy, i)){
-        makeMove(component[i].x, component[i].y, dx, dy, i);
-        change++;
-        if(component[i].x != -1 && component[i].y != -1){
-          component[i].x +=  dx;
-          component[i].y +=  dy;
-        }
-      }
-  }
-  
   checkTrash();
   return change;
 }
 
-function makeMove(x, y, dx, dy, i){
-  var newX = x + dx;
-  var newY = y + dy;  
-  var newValue = matrix[x][y] + matrix[newX][newY];
-    
-  if(matrix[newX][newY] == matrix[x][y]){
-    component[i].x = -1;
-    component[i].y = -1;
+function makeMove(x, y, dx, dy, i) {
+  const newX     = x + dx;
+  const newY     = y + dy;
+  const newValue = matrix[x][y] + matrix[newX][newY];
+
+  if (matrix[newX][newY] === matrix[x][y]) {
+    component[i] = { x: -1, y: -1 };
     score += newValue;
-    $(".scorefield").text(score);
-    if(score > best){
+    document.querySelector('.scorefield').textContent = score;
+    if (score > best) {
       best = score;
-      $(".numbest").text(best);
+      document.querySelector('.numbest').textContent = best;
     }
   }
-  
+
   matrix[newX][newY] = newValue;
-  matrix[x][y] = 0;
-  
-  updateTile(12 * newX, 12 * newY, newX, newY);
-  $('.tile-' + x + '-' + y + '').remove();
-  
-  if(newValue == 2048){
-    won();
-  }
+  matrix[x][y]       = 0;
+
+  updateTile(newX, newY);
+  document.querySelector(`.tile-${x}-${y}`)?.remove();
+
+  if (newValue === 2048) showWon();
 }
 
-function checkTrash(){
-  for(var i = 0; i < component.length; i++){
-    if(component[i].x == -1 && component[i].y == -1){
-      component.splice(i, 1);
+function addTile() {
+  let i = 0;
+  while (i < 1) {
+    const x = random(0, 4);
+    const y = random(0, 4);
+    if (matrix[x][y] === 0) {
+      matrix[x][y] = twoOrFour();
+      component.push({ x, y });
+      updateTile(x, y);
+      i++;
     }
   }
 }
 
-function isMovePossible(x, y, dx, dy, i){
-  var newX = x + dx;
-  var newY = y + dy;
-  
-  if(newX < 4 && newX >= 0 && newY < 4 && newY >= 0){
-    if(matrix[newX][newY] == 0){
-      return true;
-    }else if(matrix[newX][newY] == matrix[x][y]){
-      return true;
-    }else{
-      return false;
+function checkTrash() {
+  component = component.filter(c => c.x !== -1 && c.y !== -1);
+}
+
+function isMovePossible(x, y, dx, dy) {
+  const newX = x + dx;
+  const newY = y + dy;
+  if (newX < 0 || newX >= 4 || newY < 0 || newY >= 4) return false;
+  return matrix[newX][newY] === 0 || matrix[newX][newY] === matrix[x][y];
+}
+
+function checkDefeat() {
+  if (component.length < 16) return false;
+  for (const c of component) {
+    for (const [dx, dy] of [[-1,0],[1,0],[0,-1],[0,1]]) {
+      if (isMovePossible(c.x, c.y, dx, dy)) return false;
     }
-  }else{
-    return false;
   }
+  return true;
+}
+
+function showGameOver() {
+  const over = document.querySelector('.over');
+  over.style.visibility = 'visible';
+  over.style.opacity    = '1';
+}
+
+function showWon() {
+  const won = document.querySelector('.won');
+  won.style.visibility = 'visible';
+  won.style.paddingTop = '0px';
+  won.style.opacity    = '1';
 }
