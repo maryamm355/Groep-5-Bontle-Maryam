@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boter Kaas en Eieren</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Boter Kaas Eieren</h1>
+
+  <section id="game-wrap">
+    <section id="left-side">
+      <p id="beurt">Speler X is aan de beurt</p>
+      <canvas id="canvas" width="300" height="300"></canvas>
+      <p id="message"></p>
+      <button id="opnieuw" onclick="startGame()">Opnieuw</button>
+    </section>
+
+    <aside id="scorebord">
+      <p class="zij-titel">Scorebord</p>
+      <section class="score-rij">
+        <span class="speler x">X</span>
+        <span id="score-x">0</span>
+      </section>
+      <section class="score-rij">
+        <span class="speler o">O</span>
+        <span id="score-o">0</span>
+      </section>
+      <section class="score-rij">
+        <span class="speler gelijk">~</span>
+        <span id="score-gelijk">0</span>
+      </section>
+      <button id="reset-score" onclick="resetScore()">Reset score</button>
+    </aside>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
