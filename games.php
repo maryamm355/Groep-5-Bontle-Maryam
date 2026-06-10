@@ -24,10 +24,10 @@
                 <a href="snake/index.html"><img src="images/snake.png" alt="Classic Snake game"></a>
             </article>
             <article class="games1">
-                <a href="2048/index.html"><img src="images/2048.webp" alt="2048 game"></a>
+                <a href="simon says/index.html"><img src="images/simonsays.png" alt="Simon Says game"></a>
             </article>
             <article class="games1">
-                <a href="2048/index.html"><img src="images/2048.webp" alt="2048 game"></a>
+                <a href="boter-kaas-eiren/index.html"><img src="images/tictactoe.png" alt="Boter Kaas Eiren game"></a>
             </article>
             <article class="games1">
                 <a href="2048/index.html"><img src="images/2048.webp" alt="2048 game"></a>
