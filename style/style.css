@@ -232,6 +232,8 @@ body {
   object-position: center;
   height: 200px;
   border-radius: 50px;
+  border-color: #ec4899;
+  border: 2px solid #ffffff;
 }
 
 .game-info {
