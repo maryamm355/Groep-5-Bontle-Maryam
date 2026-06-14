@@ -1,4 +1,6 @@
+<?php
 
+?>
 
 <link rel="stylesheet" href="style/style.css">
 <main class="reserveer-BG">

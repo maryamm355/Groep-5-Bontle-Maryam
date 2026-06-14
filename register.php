@@ -1,7 +1,6 @@
 <?php
-require_once "config.php";
+require_once "db.php";
  
-
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
  
@@ -63,7 +62,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             
             if(mysqli_stmt_execute($stmt)){
-                header("location: login.php");
+                if(session_status() === PHP_SESSION_NONE){
+                    session_start();
+                }
+                
+                $new_user_id = mysqli_insert_id($link);
+                
+
+                $_SESSION["loggedin"] = true;
+                $_SESSION["id"] = $new_user_id;
+                $_SESSION["username"] = $username;                            
+                
+                header("location: profile.php");
+                exit; 
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -81,38 +92,60 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 360px; padding: 20px; }
-    </style>
+    <link rel="stylesheet" href="style/style.css">  
 </head>
 <body>
-    <div class="wrapper">
-        <h2>Sign Up</h2>
-        <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
-            </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
-        </form>
-    </div>    
+
+    <main class="reserveer-BG">
+        <section class="login-container">
+            <h1 class="login-welcome-message">MAAK UW ACCOUNT AAN</h1>
+            <p class="login-welcome-message">Sign Up</p>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <section class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                    <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                </section>    
+                <section class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                    <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                </section>
+                <section class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                    <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                </section>
+                <section class="buttonlogin">
+                    <button type="submit" class="btn btn-primary" value="Submit">Register</button>
+                </section>
+                <section class="buttonredo">
+                    <button type="reset" class="btn btn-secondary ml-2" value="Reset">Reset</button>
+                </section>
+            </form>
+        </section>
+
+        <hr class="divider">
+
+        <section class="register-container">
+            <h1 class="login-welcome-message">WELCOME TERUG OP DBM</h1>
+            <p class="login-welcome-message">Login</p>
+            <form action="login.php" method="post">
+                <section class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control">
+                </section>    
+                <section class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control">
+                </section>
+                <section class="buttonlogin">
+                    <button type="submit" class="btn btn-primary" value="Submit">Login</button>
+                </section>
+            </form>
+        </section>
+
+    </main> 
+
 </body>
 </html>

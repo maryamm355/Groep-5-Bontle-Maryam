@@ -15,7 +15,7 @@
 </search>
 
      <section class="button-login">
-            <a href="login.php"><button class="login-button">Login</button></a>
+            <a href="register.php"><button class="login-button">Login</button></a>
         </section>
 
 </header>
